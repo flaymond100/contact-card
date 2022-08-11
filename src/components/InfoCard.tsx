@@ -9,10 +9,15 @@ interface InfoCardProps {
 
 export const InfoCard: FC<InfoCardProps> = ({user}) => {
   const [edit, setEdit] = useState<boolean>(false);
-  const { register, handleSubmit } = useForm<User>({
+  const { register, handleSubmit, reset } = useForm<User>({
       defaultValues: user ?? {}
   });
   const onSubmit: SubmitHandler<User> = data => console.log(data);
+
+  const handleCancel = () => {
+      reset();
+      setEdit(!edit);
+  }
 
   return (
       <>
@@ -29,7 +34,7 @@ export const InfoCard: FC<InfoCardProps> = ({user}) => {
                       <TextField disabled={!edit} label="Last name" {...register("lastName")} variant="outlined" />
                   </Grid>
                   {edit && <Stack direction="row" spacing={8}>
-                      <Button onClick={() => setEdit(!edit)}>Cancel</Button>
+                      <Button onClick={handleCancel}>Cancel</Button>
                       <Button type="submit">Save</Button>
                   </Stack>}
               </Grid>
