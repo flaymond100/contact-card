@@ -12,7 +12,10 @@ export const InfoCard: FC<InfoCardProps> = ({user}) => {
   const { register, handleSubmit, reset } = useForm<User>({
       defaultValues: user ?? {}
   });
-  const onSubmit: SubmitHandler<User> = data => console.log(data);
+  const onSubmit: SubmitHandler<User> = data => {
+      setEdit(!edit);
+      console.log(data);
+  }
 
   const handleCancel = () => {
       reset();

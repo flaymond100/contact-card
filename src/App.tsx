@@ -14,6 +14,7 @@ function App() {
   const loading = useMemo(() => Boolean(!user), [user]);
 
   useEffect(() => {
+    //imitation of API call
     setTimeout(() =>
         axios.get('mockUpData/data.json')
         .then(({data}) => setUser(data))
